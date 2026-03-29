@@ -1,242 +1,944 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-  <!-- #CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- #box icon -->
-  <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <!--remox icon-->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pavan Sanwlot — Digital Marketing & Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1C1917;
+    --ink2: #44403C;
+    --muted: #78716C;
+    --accent: #C84B2F;
+    --accent2: #E8A87C;
+    --surface: #EDEAE3;
+    --white: #FDFCFA;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(28,25,23,0.08);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.06em;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 4rem 4rem;
+    gap: 4rem;
+    position: relative;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(200,75,47,0.07) 0%, transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(232,168,124,0.1) 0%, transparent 45%);
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(200,75,47,0.1);
+    padding: 0.35rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-role {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink2);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #a83a20; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(28,25,23,0.1);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 3px; letter-spacing: 0.04em; }
+
+  .hero-image {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-photo-wrap {
+    position: relative;
+    width: 420px; height: 520px;
+  }
+  .hero-photo-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+    animation: morphBlob 8s ease-in-out infinite;
+  }
+  @keyframes morphBlob {
+    0%,100% { border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%; }
+    33% { border-radius: 60% 40% 40% 60% / 40% 60% 40% 60%; }
+    66% { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 20px;
+    background: url('https://pavan-sanwlot.netlify.app/img/pavan.png') center/cover no-repeat;
+    border-radius: 38% 58% 58% 38% / 48% 38% 58% 48%;
+    animation: morphBlob 8s ease-in-out infinite 0.5s;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 40px; right: -10px;
+    background: var(--white);
+    border: 1px solid rgba(28,25,23,0.1);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink2);
+    box-shadow: 0 4px 20px rgba(28,25,23,0.08);
+    white-space: nowrap;
+  }
+  .hero-badge span { color: var(--accent); font-weight: 500; }
+  .hero-badge2 {
+    position: absolute;
+    top: 30px; left: -20px;
+    background: var(--accent);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(200,75,47,0.3);
+    white-space: nowrap;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    display: block;
+    background: url('https://pavan-sanwlot.netlify.app/img/my.jpeg') center/cover no-repeat;
+  }
+  .about-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--surface);
+    border-radius: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 5rem;
+    color: var(--accent2);
+  }
+  .about-tag-float {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    background: var(--accent);
+    color: var(--white);
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .about-tag-float strong { font-family: var(--serif); font-size: 1.6rem; font-style: italic; display: block; }
+
+  .about-content { padding-top: 0.5rem; }
+  .about-content p { font-size: 1rem; line-height: 1.8; color: var(--ink2); margin-bottom: 1.25rem; }
+  .about-details {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--cream);
+    border-radius: 1rem;
+  }
+  .detail-row { display: flex; flex-direction: column; gap: 2px; }
+  .detail-key { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .detail-val { font-size: 0.95rem; color: var(--ink); font-weight: 500; }
+  .skills-wrap { margin-top: 1.5rem; }
+  .skills-wrap h4 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.82rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(28,25,23,0.15);
+    color: var(--ink2);
+    background: transparent;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .skill-tag.highlight { background: rgba(200,75,47,0.08); border-color: rgba(200,75,47,0.25); color: var(--accent); }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(28,25,23,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(28,25,23,0.08); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(200,75,47,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+  .service-card h3 { font-family: var(--serif); font-size: 1.3rem; color: var(--ink); margin-bottom: 0.75rem; }
+  .service-card p { font-size: 0.92rem; line-height: 1.7; color: var(--muted); }
+  .service-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+  .tool-pill {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--surface);
+    color: var(--ink2);
+    border-radius: 1rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--ink); color: var(--cream); }
+  #experience .section-title { color: var(--cream); }
+  #experience .section-label { color: var(--accent2); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+  .exp-card {
+    border: 1px solid rgba(245,240,232,0.12);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .exp-card:hover { border-color: rgba(245,240,232,0.3); background: rgba(245,240,232,0.04); }
+  .exp-period {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+  .exp-title { font-family: var(--serif); font-size: 1.35rem; color: var(--cream); margin-bottom: 0.25rem; }
+  .exp-company { font-size: 0.9rem; color: rgba(245,240,232,0.55); margin-bottom: 1rem; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-points li {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.72);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .exp-points li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--accent2);
+  }
+  .cert-strip {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px solid rgba(245,240,232,0.12);
+    border-radius: 1.5rem;
+  }
+  .cert-strip h3 { font-family: var(--serif); font-size: 1.1rem; color: var(--cream); margin-bottom: 1.25rem; font-style: italic; }
+  .cert-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .cert-pill {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(245,240,232,0.2);
+    color: rgba(245,240,232,0.75);
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--white); }
+  .portfolio-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid rgba(28,25,23,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(28,25,23,0.1); }
+  .project-img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+    background: var(--surface);
+  }
+  .project-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16/10;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--cream) 100%);
+    color: var(--muted);
+  }
+  .project-body { padding: 1.5rem; }
+  .project-type {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .project-body h3 { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin-bottom: 0.5rem; }
+  .project-body p { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .project-tag {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--cream);
+    color: var(--ink2);
+    border-radius: 1rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); }
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+  .contact-info h3 { font-family: var(--serif); font-size: 1.8rem; color: var(--ink); margin-bottom: 1rem; font-style: italic; }
+  .contact-info p { font-size: 0.95rem; line-height: 1.75; color: var(--ink2); margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: var(--surface);
+    border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contact-form-wrap {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    border: 1px solid rgba(28,25,23,0.07);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(28,25,23,0.15);
+    border-radius: 0.75rem;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 2rem;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover { background: #a83a20; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.5);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer a { color: var(--accent2); text-decoration: none; }
+  .footer-socials { display: flex; gap: 1.25rem; }
+  .footer-socials a {
+    color: rgba(245,240,232,0.45);
+    font-size: 0.82rem;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .footer-socials a:hover { color: var(--accent2); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #home { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .hero-image { display: none; }
+    .about-grid, .contact-wrap, .exp-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
-
 <body>
-  <header>
-    <a href="#" class="logo">PAVAN <span>SANWLOT</span></a>
-    <div class="bx bx-menu" id="menu-icon"></div>
-    <ul class="navlist">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
 
-    </ul>
-    <div class="top-btnn">
-      <a href="#contact-form" class="h-btn">Contact me</a>
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Pavan Sanwlot</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact" class="nav-cta">Hire me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-text">
+    <div class="hero-tag">Open to opportunities</div>
+    <h1 class="hero-name">Pavan<br><em>Sanwlot</em></h1>
+    <p class="hero-role">Digital Marketer & Creative Designer</p>
+    <p class="hero-desc">
+      I craft brand stories, social media campaigns, and visual experiences that connect audiences to products they love — using Canva, Figma, AI tools, and frontend development.
+    </p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-primary">View my work</a>
+      <a href="https://api.whatsapp.com/send?phone=918690896549" class="btn-outline" target="_blank">WhatsApp me</a>
     </div>
-
-  </header>
-
-
-  <section class="hero" id="home">
-    <div class="main-content" data-aos="fade-in">
+    <div class="hero-stats">
       <div>
-        
-        <h1>I'm <span id="typewriter">Pavan Sanwlot</span></h1>
-        <p>Emerging technology professional with comprehensive skills in web development, hardware infrastructure, and network IT solutions. Equipped with technical expertise in creating responsive web applications using JavaScript, Python, PHP, and WordPress. Demonstrated ability to transform creative concepts into functional digital platforms with proficiency in HTML5, CSS3, and design tools like Figma and Canva.</p>
+        <div class="stat-num">1+</div>
+        <div class="stat-label">Years experience</div>
       </div>
-      <div class="social">
-        <a href="https://github.com/PawanSanwlot" target="_blank"><i class="ri-github-fill"></i></a>
-        <a href="https://www.linkedin.com/in/pavansanwlot/" target="_blank"><i class="ri-linkedin-fill"></i></a>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Open-source projects</div>
       </div>
-      <div class="main-btn">
-        <a href="https://api.whatsapp.com/send?phone=918690896549" target="_blank" class="btn">Hire me</a>
-        <a href="/My Resume Pavan.pdf" class="btn btn2" download>Download CV</a>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Brands worked with</div>
       </div>
     </div>
-
-    <div class="hero-img-container">
-      <img src="./img/pavan.png" alt="pavan" class="hero-img">
-    </div>
-
-  </section>
-
-  <section class="about" id="about">
-    <div class="about-img" data-aos="zoom-in-down">
-      <img src="./img/my.jpeg">
-    </div>
-    <div class="about-text" data-aos="zoom-in-up">
-      <h2>I am Web <span>Designer</span><br>
-        & Web Developer </h2>
-      <div class="exp-area">
-        <p class="exp">
-          Experience
-          <span>1.5 Years</span>
-        </p>
-
-        <p class="exp">
-          Speciality:
-          <span>WebDeveloper, UI/UX Designer, IT Expert </span>
-        </p>
-        <p class="exp">
-          Address:
-          <span>Jodhpur, Rajasthan</span>
-        </p>
-
-        <p class="exp">
-          Email:
-          <span>pawansanwlott@gmail.com</span>
-        </p>
-
-        <p class="exp">
-          Phone:
-          <span>8690896549</span>
-        </p>
-
-        <p class="exp">
-          Freelance:
-          <span>Availble</span>
-        </p>
-      </div>
-      <a href="#" class="btn">View All Projects</a>
-    </div>
-
-  </section>
-
-  <section class="services" id="services">
-    <div class="center-text" data-aos="fade-down">
-      <h2>My <span>Services</span> </h2>
-    </div>
-    <div class="services-content" data-aos="zoom-in-up">
-
-      <div class="box">
-
-        <img src="./img/s-1.svg" alt="">
-        <h3>IT Solutions</h3>
-        <p>My services encompass system integration, hardware diagnostics, and strategic implementation. Analyze infrastructure, optimization, and execute technological transformations to your requirements.</p>
-        <!-- <a href="#">Download Now
-          <i class="ri-arrow-right-line"></i>
-        </a> -->
-      </div>
-
-      <div class="box">
-
-        <img src="./img/s-2.svg" alt="">
-        <h3>UI/UX Design </h3>
-        <p>Creative digital experience design focusing on intuitive, visually compelling user interfaces. I'll craft engaging design narratives that blend aesthetic excellence with functional user experience.</p>
-      </div>
-
-      <div class="box">
-
-        <img src="./img/s-3.svg" alt="">
-        <h3>Web-Development</h3>
-        <p>Dynamic web application development delivering robust, scalable digital platforms across multiple technologies. I'll transform complex business requirements into elegant, high-performance web solutions.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="portfolio" id="portfolio">
-    <div class="center-text" data-aos="fade-down">
-      <h2>My <span>Portfolio</span></h2>
-    </div>
-
-    <div class="Portfolio-content" data-aos="zoom-in-up">
-      <div class="row">
-        <img src="./img/app1.png" alt="">
-        <div class="main-row">
-          <div class="row-text">
-            <h5>Signature App</h5>
-          </div>
-          <div class="row-icon">
-            <a href="https://mysignapp.netlify.app/" target="_blank"><i class="ri-github-fill"></i></a>
-          </div>
-        </div>
-        <p>The Signature App is a simple, user-friendly web application that allows users to create, customize, and save digital signatures.</p>
-      </div>
-      <div class="row">
-        <img src="./img/a-sleek--modern-mobile-ui-design-for-a-joke-genera.jpg" alt="">
-        <div class="main-row">
-          <div class="row-text">
-            <h5>Joke Engine</h5>
-          </div>
-          <div class="row-icon">
-            <a href="https://joke-engine.netlify.app/" target="_blank"><i class="ri-github-fill"></i></a>
-          </div>
-        </div>
-        <p>Developed a dynamic PHP-based website, 'Joke-Engine,' designed to entertain users by delivering their favorite jokes. Utilized MySQL for DBMS and implemented HTML, CSS, and PHP to create an engaging UI.</p>
-      </div>
-      <div class="row">
-        <img src="./img/a-sleek--modern-e-commerce-ui-design-concept-for-a.jpg" alt="">
-        <div class="main-row">
-          <div class="row-text">
-            <h5>Trendsetters E-Commerce Store</h5>
-          </div>
-          <div class="row-icon">
-            <a href="https://trendsetters.infy.uk/home/" target="_blank"><i class="ri-github-fill"></i></a>
-          </div>
-        </div>
-        <p>Developed a WordPress e-commerce website, 'Trendsetters,' utilizing Elementor, Woostify, and various payment gateway plugins to ensure a seamless and user-friendly shopping experience</p>
-      </div> 
-    </div>
-
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="center-text" data-aos="fade-down">
-      <h2>CONTACT <span>ME</span></h2>
-    </div>
-    <div class="contact-form" data-aos="zoom-in">
-      <form id="contact-form" action="https://formspree.io/f/mjkvzqvb" method="POST">
-        <input name="name"  type="text" placeholder="Your name" required>
-        <input name="email" type="email" placeholder="Email Address..." required>
-        <textarea name="message" id="" cols="30" rows="10" placeholder="Write Message Here." required></textarea>
-        <input type="submit" value="Send Message" class="send-btn">
-      </form>
-    </div>
-  </section>
-
-  <div class="footer">
-    <div class="copyright">
-      <p>&copy; 2025 Pavan Sanwlot, All Right Reserved.</p>
-    </div>
-    <a href="#home" class="scroll-top">
-      <i class="ri-arrow-up-s-fill"></i>
-    </a>
   </div>
- 
-  <script src="https://unpkg.com/typewriter-effect@2.1.1/dist/core.js"></script>
-  <!-- <script>
-    const typewriter = new Typewriter('#typewriter', {
-      loop: true,
-      delay: 75,
-    });
-  
-    typewriter
-      .typeString('Hello')
-      .pauseFor(1500)
-      .deleteAll()
-      .typeString('World')
-      .pauseFor(1500)
-      .start();
-  </script> -->
-  
+  <div class="hero-image">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-bg"></div>
+      <div class="hero-photo"></div>
+      <div class="hero-badge">Currently at <span>Cultivator Natural Products</span></div>
+      <div class="hero-badge2">Social Media & UI/UX Executive</div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    const typewriter = new Typewriter('#typewriter', {
-      strings: ['Web Developer', 'Web Designer', 'Wordpress Developer', "IT Expert"],
-      autoStart: true,
-      loop: true, // Optional: Makes the effect loop infinitely
-      cursor: '|', // Optional: Customize the cursor
-    });
-  </script>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I am</div>
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img-placeholder" style="background: url('https://pavan-sanwlot.netlify.app/img/my.jpeg') center/cover no-repeat; border-radius: 1.5rem;"></div>
+      <div class="about-tag-float">
+        <strong>1+</strong>
+        years in digital marketing
+      </div>
+    </div>
+    <div class="about-content reveal reveal-delay-1">
+      <div class="section-label">About me</div>
+      <h2 class="section-title">Creative professional<br><em>at the crossroads</em></h2>
+      <p>
+        I'm a Digital Marketing and Graphic Design professional based in Jodhpur, Rajasthan. I specialise in building brand presence through scroll-stopping social media content, visual design, and conversion-focused digital experiences.
+      </p>
+      <p>
+        Currently working as a Social Media & UI/UX Executive at Cultivator Natural Products, I handle end-to-end content — from planning monthly campaigns and designing creatives in Canva and Figma, to analysing performance via Meta Insights. I also build frontend web assets to support campaigns.
+      </p>
+      <div class="about-details">
+        <div class="detail-row">
+          <span class="detail-key">Location</span>
+          <span class="detail-val">Jodhpur, Rajasthan</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Email</span>
+          <span class="detail-val">pawansanwlott@gmail.com</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Phone</span>
+          <span class="detail-val">+91 8690896549</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Freelance</span>
+          <span class="detail-val" style="color: var(--accent);">Available</span>
+        </div>
+      </div>
+      <div class="skills-wrap">
+        <h4>Core skills</h4>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Canva</span>
+          <span class="skill-tag highlight">Figma</span>
+          <span class="skill-tag highlight">Social Media Marketing</span>
+          <span class="skill-tag highlight">Adobe Firefly</span>
+          <span class="skill-tag">HTML5 / CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Shopify</span>
+          <span class="skill-tag">UI/UX Design</span>
+          <span class="skill-tag">Meta Insights</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">ChatGPT / AI Tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script src="./script.js"></script>
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What I offer</div>
+      <h2 class="section-title">Services &<br><em>specialisations</em></h2>
+    </div>
+    <a href="#contact" class="btn-outline">Start a project</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">📱</div>
+      <h3>Social Media Marketing</h3>
+      <p>End-to-end social media management — content strategy, creative design, scheduling, community engagement, and performance analysis across Instagram, Facebook, and LinkedIn.</p>
+      <div class="service-tools">
+        <span class="tool-pill">Meta Insights</span>
+        <span class="tool-pill">Canva</span>
+        <span class="tool-pill">Content Calendar</span>
+        <span class="tool-pill">Reels</span>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🎨</div>
+      <h3>Graphic Design & UI/UX</h3>
+      <p>Visually compelling creatives — brand identity, social media posts, banners, infographics, story templates, and UI wireframes that balance aesthetics with function.</p>
+      <div class="service-tools">
+        <span class="tool-pill">Figma</span>
+        <span class="tool-pill">Canva</span>
+        <span class="tool-pill">Adobe Firefly</span>
+        <span class="tool-pill">Prototyping</span>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">💻</div>
+      <h3>Frontend & Web Development</h3>
+      <p>Responsive, user-friendly websites and landing pages built with modern HTML, CSS, and JavaScript. WordPress and Shopify setup, customisation, and campaign support.</p>
+      <div class="service-tools">
+        <span class="tool-pill">HTML / CSS / JS</span>
+        <span class="tool-pill">WordPress</span>
+        <span class="tool-pill">Shopify</span>
+        <span class="tool-pill">Responsive Design</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      offset: 300,
-      duration: 1400,
-    });
-  </script>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career journey</div>
+  <h2 class="section-title">Experience &<br><em>education</em></h2>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-period">March 2025 — Present</div>
+      <div class="exp-title">Social Media & UI/UX Executive</div>
+      <div class="exp-company">Cultivator Natural Products · Jodhpur</div>
+      <ul class="exp-points">
+        <li>Manage Instagram, Facebook & LinkedIn end-to-end — calendar, copy, design, scheduling</li>
+        <li>Design branded creatives, reels covers & campaign visuals using Canva, Figma & AI tools</li>
+        <li>Track KPIs via Meta Insights to continuously improve reach and engagement</li>
+        <li>Build landing page components in WordPress to support product campaigns</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-1">
+      <div class="exp-period">May 2024 — September 2024</div>
+      <div class="exp-title">Frontend & Documentation Intern</div>
+      <div class="exp-company">IBM (via NSTI Kerala) · Kozhikode</div>
+      <ul class="exp-points">
+        <li>Contributed frontend UI and technical documentation for enterprise Java projects</li>
+        <li>Created wireframes, user guides, and interface specifications</li>
+        <li>Worked in an Agile team using Git, code reviews, and sprint workflows</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-2">
+      <div class="exp-period">February 2020 — November 2020</div>
+      <div class="exp-title">GigaFiber Network Engineer</div>
+      <div class="exp-company">Jio · Jodhpur</div>
+      <ul class="exp-points">
+        <li>Installed and commissioned fiber-optic broadband connections</li>
+        <li>On-site network troubleshooting with high first-time resolution rates</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-3">
+      <div class="exp-period">August 2022 — May 2024</div>
+      <div class="exp-title">Advanced Diploma — IT, Networking & Cloud</div>
+      <div class="exp-company">National Skill Training Institute (IBM) · Kerala</div>
+      <ul class="exp-points">
+        <li>Specialisation in IT infrastructure, networking, and cloud computing</li>
+        <li>Practical training in collaboration with IBM's EduNet program</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cert-strip reveal">
+    <h3>Certifications</h3>
+    <div class="cert-list">
+      <span class="cert-pill">Power BI for Data Analysis — VOIS</span>
+      <span class="cert-pill">Build Your Own Chatbot — IBM</span>
+      <span class="cert-pill">AI & Machine Learning Basics — IBM</span>
+      <span class="cert-pill">Machine Learning with Python — IBM</span>
+      <span class="cert-pill">Data Analysis Using Python — IBM</span>
+    </div>
+  </div>
+</section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <div class="section-label">Selected work</div>
+      <h2 class="section-title">Projects &<br><em>portfolio</em></h2>
+    </div>
+    <a href="https://www.instagram.com/ayurveda_lifestyle_global/" target="_blank" class="btn-outline">View GitHub</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="project-card reveal">
+      <div class="project-img-placeholder">📱</div>
+      <div class="project-body">
+        <div class="project-type">Social Media · Design</div>
+        <h3>Cultivator Natural Products</h3>
+        <p>End-to-end social media content — product launch campaigns, festival posts, reels covers, and brand story templates across Instagram and Facebook.</p>
+        <div class="project-tags">
+          <span class="project-tag">Canva</span>
+          <span class="project-tag">Figma</span>
+          <span class="project-tag">Adobe Firefly</span>
+          <span class="project-tag">Meta Insights</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <img src="https://pavan-sanwlot.netlify.app/img/app1.png" class="project-img" alt="Signature App" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <div class="project-type">Web App · Frontend</div>
+        <h3>Signature App</h3>
+        <p>A user-friendly web application that lets users create, customise, and save digital signatures with a clean, intuitive interface.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML5</span>
+          <span class="project-tag">CSS3</span>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Canvas API</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <img src="https://pavan-sanwlot.netlify.app/img/a-sleek--modern-e-commerce-ui-design-concept-for-a.jpg" class="project-img" alt="Trendsetters" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <div class="project-type">E-Commerce · WordPress</div>
+        <h3>Trendsetters Store</h3>
+        <p>Built a full WordPress e-commerce website using Elementor, Woostify, and payment gateway integrations for a seamless shopping experience.</p>
+        <div class="project-tags">
+          <span class="project-tag">WordPress</span>
+          <span class="project-tag">Elementor</span>
+          <span class="project-tag">WooCommerce</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <img src="https://pavan-sanwlot.netlify.app/img/a-sleek--modern-mobile-ui-design-for-a-joke-genera.jpg" class="project-img" alt="Joke Engine" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <div class="project-type">Web App · PHP</div>
+        <h3>Joke Engine</h3>
+        <p>A dynamic PHP-based entertainment website delivering jokes on demand, with MySQL database and an engaging custom UI.</p>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">HTML/CSS</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-img-placeholder">🔗</div>
+      <div class="project-body">
+        <div class="project-type">Open Source · Frontend</div>
+        <h3>Open-Source Contributions</h3>
+        <p>Contributed to 10+ open-source projects on GitHub — UI components, landing pages, frontend utilities, and web tools.</p>
+        <div class="project-tags">
+          <span class="project-tag">GitHub</span>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">HTML/CSS</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2" style="background: rgba(200,75,47,0.06); border: 1.5px dashed rgba(200,75,47,0.3); display: flex; align-items: center; justify-content: center; min-height: 280px;">
+      <div style="text-align: center; padding: 2rem;">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">✦</div>
+        <p style="font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;">More projects coming soon</p>
+        <a href="https://api.whatsapp.com/send?phone=918690896549" style="font-size: 0.85rem; color: var(--muted); text-decoration: none;">Let's build something together →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2 class="section-title">Let's work<br><em>together</em></h2>
+  <div class="contact-wrap">
+    <div class="reveal">
+      <h3>Have a project in mind?</h3>
+      <p>Whether it's a social media campaign, a brand identity, a website, or just a conversation about your digital presence — I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:pawansanwlott@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          pawansanwlott@gmail.com
+        </a>
+        <a href="tel:+918690896549" class="contact-link">
+          <div class="contact-link-icon">☎</div>
+          +91 8690896549
+        </a>
+        <a href="https://www.linkedin.com/in/pavansanwlot" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          linkedin.com/in/pavansanwlot
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=918690896549" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💬</div>
+          WhatsApp me directly
+        </a>
+      </div>
+    </div>
+    <div class="contact-form-wrap reveal reveal-delay-1">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" placeholder="Rahul Sharma"/>
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="hello@example.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>What do you need?</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Social Media Management</option>
+          <option>Graphic Design</option>
+          <option>UI/UX Design</option>
+          <option>Website Development</option>
+          <option>WordPress / Shopify</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="this.textContent='Message sent ✓'; this.style.background='#3B6D11';">Send message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Pavan Sanwlot. All rights reserved.</span>
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/pavansanwlot" target="_blank">LinkedIn</a>
+    <a href="https://github.com/pawansanwlot" target="_blank">GitHub</a>
+    <a href="https://api.whatsapp.com/send?phone=918690896549" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
